@@ -11,8 +11,8 @@ load_dotenv(find_dotenv())
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-DISCORD_CLIENT_SECRET = os.environ.get("DISCORD_CLIENT_SECRET")
-MESSAGE_RETENTION_TIME = os.environ.get("MESSAGE_RETENTION_TIME", 60)
+DISCORD_BOT_TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
+DISCORD_MESSAGE_DELETE_AFTER = os.environ.get("DISCORD_MESSAGE_DELETE_AFTER", 60)
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -50,7 +50,7 @@ async def hindi_movie(ctx):
         for movie in movies.get('results', []):
             content = format_movie_data(movie)
             msg = await ctx.send(content)
-            await msg.delete(delay=MESSAGE_RETENTION_TIME)
+            await msg.delete(delay=MESSAGE_DELETE_AFTER)
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
 
@@ -63,7 +63,7 @@ async def hindi_shows(ctx):
         for show in shows.get('results', []):
             content = format_movie_data(show)
             msg = await ctx.send(content)
-            await msg.delete(delay=MESSAGE_RETENTION_TIME)
+            await msg.delete(delay=MESSAGE_DELETE_AFTER)
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
 
@@ -76,7 +76,7 @@ async def trending(ctx):
         for trend in trending.get('results', []):
             content = format_movie_data(trend)
             msg = await ctx.send(content)
-            await msg.delete(delay=MESSAGE_RETENTION_TIME)
+            await msg.delete(delay=MESSAGE_DELETE_AFTER)
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
 
@@ -89,7 +89,7 @@ async def trending_today(ctx):
         for trend in trending.get('results', []):
             content = format_movie_data(trend)
             msg = await ctx.send(content)
-            await msg.delete(delay=MESSAGE_RETENTION_TIME)
+            await msg.delete(delay=MESSAGE_DELETE_AFTER)
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
 
@@ -102,7 +102,7 @@ async def upcoming(ctx):
         for movie in upcoming.get('results', []):
             content = format_movie_data(movie)
             msg = await ctx.send(content)
-            await msg.delete(delay=MESSAGE_RETENTION_TIME)
+            await msg.delete(delay=MESSAGE_DELETE_AFTER)
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
 
