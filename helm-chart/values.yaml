@@ -3,6 +3,7 @@ replicaCount: 1
 image:
   repository: thenaim/discord-themoviedb-bot
   pullPolicy: IfNotPresent
+  tag: v1.0.0
 
 secrets:
   discord:
