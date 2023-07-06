@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: <your-docker-image>
+  repository: thenaim/discord-themoviedb-bot
   pullPolicy: IfNotPresent
 
 secrets:
