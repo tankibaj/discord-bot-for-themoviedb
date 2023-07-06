@@ -50,7 +50,7 @@ async def hindi_movie(ctx):
         for movie in movies.get('results', []):
             content = format_movie_data(movie)
             msg = await ctx.send(content)
-            await msg.delete(delay=MESSAGE_DELETE_AFTER)
+            await msg.delete(delay=DISCORD_MESSAGE_DELETE_AFTER)
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
 
@@ -63,7 +63,7 @@ async def hindi_shows(ctx):
         for show in shows.get('results', []):
             content = format_movie_data(show)
             msg = await ctx.send(content)
-            await msg.delete(delay=MESSAGE_DELETE_AFTER)
+            await msg.delete(delay=DISCORD_MESSAGE_DELETE_AFTER)
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
 
@@ -76,7 +76,7 @@ async def trending(ctx):
         for trend in trending.get('results', []):
             content = format_movie_data(trend)
             msg = await ctx.send(content)
-            await msg.delete(delay=MESSAGE_DELETE_AFTER)
+            await msg.delete(delay=DISCORD_MESSAGE_DELETE_AFTER)
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
 
@@ -89,7 +89,7 @@ async def trending_today(ctx):
         for trend in trending.get('results', []):
             content = format_movie_data(trend)
             msg = await ctx.send(content)
-            await msg.delete(delay=MESSAGE_DELETE_AFTER)
+            await msg.delete(delay=DISCORD_MESSAGE_DELETE_AFTER)
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
 
@@ -102,7 +102,7 @@ async def upcoming(ctx):
         for movie in upcoming.get('results', []):
             content = format_movie_data(movie)
             msg = await ctx.send(content)
-            await msg.delete(delay=MESSAGE_DELETE_AFTER)
+            await msg.delete(delay=DISCORD_MESSAGE_DELETE_AFTER)
     except Exception as e:
         logger.error(f"An error occurred: {str(e)}")
 
@@ -115,7 +115,7 @@ async def shutdown(ctx):
 
 
 def main():
-    bot.run(DISCORD_CLIENT_SECRET)
+    bot.run(DISCORD_BOT_TOKEN)
 
 
 if __name__ == '__main__':
