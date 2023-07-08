@@ -79,4 +79,9 @@ class TheMovieDB:
 
     def get_upcoming(self, media_type):
         url = f"{self.themoviedb_api_url}/{media_type}/upcoming"
-        return self.get_themoviedb(url, self.get_common_params())
+        upcoming = self.get_themoviedb(url, self.get_common_params())
+        if upcoming is not None:
+            for item in upcoming.get('results', []):
+                item['media_type'] = media_type
+        return upcoming
+
