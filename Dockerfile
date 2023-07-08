@@ -8,5 +8,6 @@ ADD requirements.txt $HOME/
 RUN pip install --no-cache-dir -r requirements.txt
 
 ADD main.py $HOME/
+ADD themoviedb $HOME/themoviedb
 
 CMD [ "python3" , "/app/main.py" ]
