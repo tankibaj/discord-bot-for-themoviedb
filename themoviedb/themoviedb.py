@@ -55,11 +55,19 @@ class TheMovieDB:
 
     def get_this_weeks_movies(self, language):
         params = self.params_hindi if language == 'hindi' else self.params
-        return self.get_themoviedb(self.discover_movie_url, params)
+        movies = self.get_themoviedb(self.discover_movie_url, params)
+        if movies is not None:
+            for movie in movies.get('results', []):
+                movie['media_type'] = 'movie'
+        return movies
 
     def get_this_weeks_shows(self, language):
         params = self.params_hindi if language == 'hindi' else self.params
-        return self.get_themoviedb(self.discover_show_url, params)
+        shows = self.get_themoviedb(self.discover_show_url, params)
+        if shows is not None:
+            for show in shows.get('results', []):
+                show['media_type'] = 'tv'
+        return shows
 
     def get_now_playing(self, media_type):
         url = f"{self.themoviedb_api_url}/{media_type}/now_playing"

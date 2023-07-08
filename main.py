@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(leve
 logger = logging.getLogger(__name__)
 
 DISCORD_BOT_TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
-DISCORD_MESSAGE_DELETE_AFTER = os.environ.get("DISCORD_MESSAGE_DELETE_AFTER", 60)
+DISCORD_MESSAGE_DELETE_AFTER = int(os.environ.get("DISCORD_MESSAGE_DELETE_AFTER", 60))
 
 intents = discord.Intents.default()
 intents.message_content = True
