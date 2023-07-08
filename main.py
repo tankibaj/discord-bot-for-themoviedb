@@ -42,8 +42,8 @@ async def on_command_error(ctx, error):
         logger.error(f"An error occurred: {str(error)}")
 
 
-@bot.command(name='hindi_movie')
-async def hindi_movie(ctx):
+@bot.command(name='hindi_movies')
+async def hindi_movies(ctx):
     try:
         movie_db = TheMovieDB()
         movies = movie_db.get_this_weeks_movies('hindi')
@@ -100,6 +100,45 @@ async def upcoming(ctx):
         movie_db = TheMovieDB()
         upcoming = movie_db.get_upcoming('movie')
         for movie in upcoming.get('results', []):
+            content = format_movie_data(movie)
+            msg = await ctx.send(content)
+            await msg.delete(delay=DISCORD_MESSAGE_DELETE_AFTER)
+    except Exception as e:
+        logger.error(f"An error occurred: {str(e)}")
+
+
+@bot.command(name='upcoming_shows')
+async def upcoming(ctx):
+    try:
+        movie_db = TheMovieDB()
+        upcoming = movie_db.get_upcoming('tv')
+        for movie in upcoming.get('results', []):
+            content = format_movie_data(movie)
+            msg = await ctx.send(content)
+            await msg.delete(delay=DISCORD_MESSAGE_DELETE_AFTER)
+    except Exception as e:
+        logger.error(f"An error occurred: {str(e)}")
+
+
+@bot.command(name='now_playing')
+async def now_playing(ctx):
+    try:
+        movie_db = TheMovieDB()
+        now_playing = movie_db.get_now_playing('movie')
+        for movie in now_playing.get('results', []):
+            content = format_movie_data(movie)
+            msg = await ctx.send(content)
+            await msg.delete(delay=DISCORD_MESSAGE_DELETE_AFTER)
+    except Exception as e:
+        logger.error(f"An error occurred: {str(e)}")
+
+
+@bot.command(name='now_playing_shows')
+async def now_playing(ctx):
+    try:
+        movie_db = TheMovieDB()
+        now_playing = movie_db.get_now_playing('tv')
+        for movie in now_playing.get('results', []):
             content = format_movie_data(movie)
             msg = await ctx.send(content)
             await msg.delete(delay=DISCORD_MESSAGE_DELETE_AFTER)

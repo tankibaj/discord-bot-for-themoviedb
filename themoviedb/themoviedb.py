@@ -71,7 +71,11 @@ class TheMovieDB:
 
     def get_now_playing(self, media_type):
         url = f"{self.themoviedb_api_url}/{media_type}/now_playing"
-        return self.get_themoviedb(url, self.get_common_params())
+        now_playing = self.get_themoviedb(url, self.get_common_params())
+        if now_playing is not None:
+            for item in now_playing.get('results', []):
+                item['media_type'] = media_type
+        return now_playing
 
     def get_trending(self, time_window):
         url = f"{self.themoviedb_api_url}/trending/all/{time_window}"
@@ -84,4 +88,3 @@ class TheMovieDB:
             for item in upcoming.get('results', []):
                 item['media_type'] = media_type
         return upcoming
-
